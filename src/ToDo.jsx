@@ -3,7 +3,7 @@ import { useQuery } from "react-query"
 
 const fetchData = async () => {
     try {
-        const res = await axios.get("https://dummyjson.com/products/1")
+        const res = await axios.get("https://dummyjson.com/products")
         if (res.status === 200) {
             return res.data
         } else {
@@ -16,16 +16,24 @@ const fetchData = async () => {
 
 function ToDo() {
     const { data, isLoading, isError } = useQuery('data', fetchData)
-    console.log(data);
+    
     if (isLoading) return <div>loading....</div>
     if (isError) return <div>Error</div>
+    console.log(data.products);
 
     return (
         <>
-        <h4>this is  dilshad</h4>           
-        <h4>this is the neymat</h4>           
+         
             
-           
+                    <div>
+                        <h4>{data.title}</h4>
+                        <h4>{data.description}</h4>
+                        <h6>dilshad</h6>
+
+                    </div>
+
+          
+
         </>
     )
 }
